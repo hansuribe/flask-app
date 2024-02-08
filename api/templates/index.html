@@ -23,7 +23,7 @@
     {% if resultado %}
         <div class="resultado">
             <h2>Resultado:</h2>
-            <p>{{ resultado }}</p>
+            <p>{{ resultado|safe }}</p>
         </div>
     {% endif %}
 
