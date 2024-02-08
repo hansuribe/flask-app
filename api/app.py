@@ -35,8 +35,8 @@ def index():
         # val1 = float(vals[0])
         # val2 = float(vals[1])
         # val3 = Symbol(vals[0])
-        
-        result = diff(sin(x))
+        a = diff(sin(x))
+        result = a
     else:
         # val1 = ''
         # val2 = ''
