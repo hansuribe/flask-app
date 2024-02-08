@@ -31,12 +31,17 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+
+
         vals = request.form.getlist('misvalores')
-        # val1 = float(vals[0])
+        val3 = float(vals['x'])
         # val2 = float(vals[1])
         # val3 = Symbol(vals[0])
 
-        result = diff(val3)
+        a =  diff(val3)
+
+
+        result = a
     else:
         # val1 = ''
         # val2 = ''
