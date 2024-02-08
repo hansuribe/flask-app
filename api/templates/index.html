@@ -1,25 +1,23 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Flask</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <title>Derivador de Funciones</title>
 </head>
 <body>
-    <h1>Operaciones matemáticas con Flask 3</h1>
-    <h2>Suma de dos números</h2>
-    <p>Introduzca dos números y pulse el botón para obtener la suma.</p>
-    <form action="/" method="POST">
-        <!-- <p>Input 1: <input name="misvalores" value="{{ val1 }}"></p>
-        <p>Input 2: <input name="misvalores" value="{{ val2 }}"></p> -->
-        <!-- <p>Input 3: <input name="misvalores" value="{{ val3 }}"></p> -->
-        <p>Input 3: <input name="misvalores" value="{{ val3 }}"></p>
-
-        <input type="submit" value="Sumar">
+    <h1>Derivador de Funciones</h1>
+    <form action="/derivar" method="post">
+        <label for="funcion">Ingrese la función:</label>
+        <input type="text" id="funcion" name="funcion">
+        <button type="submit">Derivar</button>
     </form>
-    <br>
-    <p>Resultado: {{ result }}</p>
+
+    {% if resultado %}
+        <h2>Resultado de la derivada:</h2>
+        <p>{{ resultado }}</p>
+    {% endif %}
 </body>
 </html>
