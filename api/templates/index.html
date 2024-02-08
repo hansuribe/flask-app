@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Derivadas e Integrales</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        .resultado {
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <h1>Calculadora de Derivadas e Integrales</h1>
@@ -23,7 +16,7 @@
     {% if resultado %}
         <div class="resultado">
             <h2>Resultado:</h2>
-            <p>{{ resultado|safe }}</p>
+            <p>{{ resultado }}</p>
         </div>
     {% endif %}
 
