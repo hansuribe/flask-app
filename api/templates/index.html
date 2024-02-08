@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,15 +6,19 @@
 </head>
 <body>
     <h1>Derivador de Funciones</h1>
-    <form action="/derivar" method="post">
+    <form action="/" method="post">
         <label for="funcion">Ingrese la función:</label>
-        <input type="text" id="funcion" name="funcion">
+        <input type="text" id="funcion" name="funcion" required>
         <button type="submit">Derivar</button>
     </form>
 
-    {% if resultado %}
+    {% if resultado is not none %}
         <h2>Resultado de la derivada:</h2>
         <p>{{ resultado }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p>Error: {{ error }}</p>
     {% endif %}
 </body>
 </html>
