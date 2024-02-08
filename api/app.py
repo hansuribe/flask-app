@@ -34,7 +34,7 @@ def index():
         vals = request.form.getlist('misvalores')
         val1 = float(vals[0])
         val2 = float(vals[1])
-        a = diff(cos(sin(x**3)),x)
+        a = diff(cos(x)
         result = a
     else:
         val1 = ''
