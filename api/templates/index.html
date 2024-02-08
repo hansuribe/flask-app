@@ -1,32 +1,15 @@
-<!-- <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Derivador de Funciones</title>
-</head>
-<body>
-    <h1>Derivador de Funciones</h1>
-    <form action="/" method="post">
-        <label for="funcion">Ingrese la función:</label>
-        <input type="text" id="funcion" name="funcion" required>
-        <button type="submit">Derivar</button>
-    </form>
-
-    {% if resultado is not none %}
-        <h2>Resultado de la derivada:</h2>
-        <p>{{ resultado }}</p>
-    {% endif %}
-
-    {% if error %}
-        <p>Error: {{ error }}</p>
-    {% endif %}
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Derivadas e Integrales</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .resultado {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculadora de Derivadas e Integrales</h1>
@@ -38,12 +21,14 @@
     </form>
 
     {% if resultado %}
-        <h2>Resultado:</h2>
-        <p>{{ resultado }}</p>
+        <div class="resultado">
+            <h2>Resultado:</h2>
+            <p>{{ resultado }}</p>
+        </div>
     {% endif %}
 
     {% if error %}
-        <p>Error: {{ error }}</p>
+        <p class="error">Error: {{ error }}</p>
     {% endif %}
 </body>
 </html>
