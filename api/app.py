@@ -15,7 +15,7 @@ from flask import Flask, request, render_template
 from sympy import *
 
 
-x = Symbol('x')
+
 
 
 
@@ -23,7 +23,6 @@ x = Symbol('x')
 
 #Se calcula la derivada de la funcion cos(sin(x^3)) con respecto a x
 
-a = diff(cos(sin(x**3)),x)
 
 app = Flask(__name__)
 
@@ -32,9 +31,13 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         vals = request.form.getlist('misvalores')
-        val1 = float(vals[0])
-        val2 = float(vals[1])
-        result = a
+        # val1 = float(vals[0])
+        # val2 = float(vals[1])
+        val1 = Symbol('x')
+        val2 = Symbol('x')
+        # val2 = float(vals[1])
+
+        result = diff(val1,val2)
     else:
         val1 = ''
         val2 = ''
