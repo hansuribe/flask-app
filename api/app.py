@@ -35,12 +35,12 @@ def index():
         # val1 = float(vals[0])
         # val2 = float(vals[1])
         # val3 = Symbol(vals[0])
-        a = diff(sin(x))
-        result = a
+
+        result = diff(val3)
     else:
         # val1 = ''
         # val2 = ''
         val3 = ""
         result = ''
     # return render_template('index.html', val1=val1, val2=val2, result=result)
-        return render_template('index.html', val3=val3, result=result)
+        return render_template('index.html',  result=result)
