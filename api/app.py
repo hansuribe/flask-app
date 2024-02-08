@@ -50,22 +50,32 @@ app = Flask(__name__)
 #     # return render_template('index.html', val1=val1, val2=val2, result=result)
 #         return render_template('index.html',  result=result)
 
+from flask import Flask, render_template, request
+from sympy import symbols, diff, simplify
 
-@app.route('/derivar', methods=['POST'])
-def derivar():
-    # Obtener la función ingresada por el usuario desde el formulario
-    funcion = request.form['funcion']
+app = Flask(__name__)
 
-    # Crear el símbolo para la variable independiente
-    x = symbols('x')
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Obtener la función ingresada por el usuario desde el formulario
+        funcion = request.form['funcion']
 
-    try:
-        # Derivar la función ingresada utilizando SymPy
-        funcion_derivada = diff(funcion, x)
-        # Simplificar la derivada
-        funcion_derivada = simplify(funcion_derivada)
-        resultado = str(funcion_derivada)
-    except Exception as e:
-        resultado = f"No se pudo derivar la función: {e}"
+        # Crear el símbolo para la variable independiente
+        x = symbols('x')
 
-    return render_template('index.html', resultado=resultado)
+        try:
+            # Derivar la función ingresada utilizando SymPy
+            funcion_derivada = diff(funcion, x)
+            # Simplificar la derivada
+            funcion_derivada = simplify(funcion_derivada)
+            resultado = str(funcion_derivada)
+        except Exception as e:
+            resultado = f"No se pudo derivar la función: {e}"
+
+        return render_template('index.html', resultado=resultado)
+    else:
+        return render_template('index.html', resultado=None)
+
+if __name__ == '__main__':
+    app.run(debug=True)
