@@ -15,7 +15,7 @@ from flask import Flask, request, render_template
 from sympy import *
 
 
-
+val1 = Symbol('x')
 
 
 
