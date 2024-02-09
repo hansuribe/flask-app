@@ -45,10 +45,6 @@ def index():
 # Ruta para la tabla de multiplicar
 @app.route('/tabla_multiplicar', methods=['GET', 'POST'])
 def tabla_multiplicar():
-    pregunta = None
-    respuesta_correcta = None
-    mensaje = None
-
     if not preguntas_respuestas:
         # Generar preguntas y respuestas si la lista está vacía
         for numero in range(2, 10):
@@ -56,6 +52,8 @@ def tabla_multiplicar():
                 pregunta = f"{numero} x {multiplicador} = ?"
                 respuesta_correcta = numero * multiplicador
                 preguntas_respuestas.append((pregunta, respuesta_correcta))
+
+    mensaje = None
 
     if request.method == 'POST':
         respuesta_usuario = int(request.form['respuesta'])
@@ -65,10 +63,9 @@ def tabla_multiplicar():
         else:
             mensaje = "Respuesta incorrecta. Inténtalo de nuevo."
             preguntas_respuestas.append((pregunta, respuesta_correcta))
+            return redirect(url_for('tabla_multiplicar'))
 
-    else:
-        pregunta, respuesta_correcta = preguntas_respuestas[0]
-
+    pregunta, _ = preguntas_respuestas[0]
     return render_template('tabla_multiplicar.html', pregunta=pregunta, mensaje=mensaje)
 
 
