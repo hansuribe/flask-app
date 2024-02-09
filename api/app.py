@@ -43,6 +43,7 @@ def index():
 
 # Nueva ruta para la tabla de multiplicar
 # Ruta para la tabla de multiplicar
+# Ruta para la tabla de multiplicar
 @app.route('/tabla_multiplicar', methods=['GET', 'POST'])
 def tabla_multiplicar():
     if not preguntas_respuestas:
@@ -57,17 +58,23 @@ def tabla_multiplicar():
 
     if request.method == 'POST':
         respuesta_usuario = int(request.form['respuesta'])
-        pregunta, respuesta_correcta = preguntas_respuestas.pop(0)
-        if respuesta_usuario == respuesta_correcta:
-            mensaje = "¡Respuesta correcta!"
+        if preguntas_respuestas:
+            pregunta, respuesta_correcta = preguntas_respuestas.pop(0)
+            if respuesta_usuario == respuesta_correcta:
+                mensaje = "¡Respuesta correcta!"
+            else:
+                mensaje = "Respuesta incorrecta. Inténtalo de nuevo."
+                preguntas_respuestas.append((pregunta, respuesta_correcta))
+                return redirect(url_for('tabla_multiplicar'))
         else:
-            mensaje = "Respuesta incorrecta. Inténtalo de nuevo."
-            preguntas_respuestas.append((pregunta, respuesta_correcta))
-            return redirect(url_for('tabla_multiplicar'))
+            mensaje = "¡Todas las preguntas han sido respondidas!"
 
-    pregunta, _ = preguntas_respuestas[0]
+    if preguntas_respuestas:
+        pregunta, _ = preguntas_respuestas[0]
+    else:
+        pregunta = None
+
     return render_template('tabla_multiplicar.html', pregunta=pregunta, mensaje=mensaje)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
