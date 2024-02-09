@@ -6,6 +6,13 @@
 </head>
 <body>
     <h1>Calculadora de Derivadas e Integrales</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/tabla_multiplicar">Tabla de Multiplicar</a></li>
+        </ul>
+    </nav>
+
     <form action="/" method="post">
         <label for="funcion">Ingrese la función:</label>
         <input type="text" id="funcion" name="funcion" required>
@@ -14,12 +21,15 @@
     </form>
 
     {% if resultado %}
-        <h2>Resultado:</h2>
-        <p>{{ resultado }}</p>
+        <div class="resultado">
+            <h2>Resultado:</h2>
+            <p>La función ingresada es: \( {{ funcion }} \)</p>
+            <p>El resultado es: \( {{ resultado }} \)</p>
+        </div>
     {% endif %}
 
     {% if error %}
-        <p>Error: {{ error }}</p>
+        <p class="error">Error: {{ error }}</p>
     {% endif %}
 </body>
 </html>

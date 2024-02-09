@@ -6,6 +6,13 @@
 </head>
 <body>
     <h1>Tabla de Multiplicar</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/tabla_multiplicar">Tabla de Multiplicar</a></li>
+        </ul>
+    </nav>
+
     {% if pregunta %}
         <p>{{ pregunta }}</p>
         <form action="/tabla_multiplicar" method="post">
