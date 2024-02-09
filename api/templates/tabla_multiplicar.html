@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de Multiplicar</title>
+</head>
+<body>
+    <h1>Tabla de Multiplicar</h1>
+    {% if pregunta %}
+        <p>{{ pregunta }}</p>
+        <form action="/tabla_multiplicar" method="post">
+            <input type="number" name="respuesta" required>
+            <button type="submit">Enviar</button>
+        </form>
+    {% endif %}
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+</body>
+</html>

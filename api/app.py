@@ -36,5 +36,35 @@ def index():
 
     return render_template('index.html', resultado=resultado, error=error)
 
+# Nueva ruta para la tabla de multiplicar
+@app.route('/tabla_multiplicar', methods=['GET', 'POST'])
+def tabla_multiplicar():
+    pregunta = None
+    respuesta_correcta = None
+    respuesta_usuario = None
+    mensaje = None
+
+    if request.method == 'POST':
+        respuesta_usuario = int(request.form['respuesta'])
+        if respuesta_usuario == respuesta_correcta:
+            mensaje = "¡Respuesta correcta!"
+        else:
+            mensaje = "Respuesta incorrecta. Inténtalo de nuevo."
+
+    else:
+        # Generar aleatoriamente la pregunta de la tabla de multiplicar
+        numero = random.randint(2, 9)
+        multiplicador = random.randint(2, 9)
+        pregunta = f"{numero} x {multiplicador} = ?"
+        respuesta_correcta = numero * multiplicador
+
+    return render_template('tabla_multiplicar.html', pregunta=pregunta, mensaje=mensaje)
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
