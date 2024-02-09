@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from sympy import symbols, diff, integrate, simplify, SympifyError
 
 import random
