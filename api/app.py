@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
-from sympy import symbols, diff, integrate, simplify, latex, SympifyError
+from sympy import symbols, diff, integrate, simplify, SympifyError
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     resultado = None
-    resultado_tex = None
     error = None
     if request.method == 'POST':
         try:
@@ -25,14 +24,17 @@ def index():
                 resultado = integrate(funcion, x)
             else:
                 error = "Operación no válida"
-                return render_template('index.html', resultado=resultado, resultado_tex=resultado_tex, error=error)
+                return render_template('index.html', resultado=resultado, error=error)
 
             # Simplificar el resultado
             resultado = simplify(resultado)
-            resultado_tex = latex(resultado)
+            resultado = str(resultado)
         except SympifyError as e:
             error = f"Error al procesar la función: {e}"
         except Exception as e:
             error = f"Error inesperado: {e}"
 
-    return render_template('index.html', resultado=resultado, resultado_tex=resultado_tex, error=error)
+    return render_template('index.html', resultado=resultado, error=error)
+
+if __name__ == '__main__':
+    app.run(debug=True)
