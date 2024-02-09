@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+
 from sympy import symbols, diff, integrate, simplify, SympifyError
 
 import random
@@ -44,15 +45,18 @@ def index():
 # Nueva ruta para la tabla de multiplicar
 # Ruta para la tabla de multiplicar
 # Ruta para la tabla de multiplicar
-@app.route('/tabla_multiplicar', methods=['GET', 'POST'])
+app.route('/tabla_multiplicar', methods=['GET', 'POST'])
 def tabla_multiplicar():
     if not preguntas_respuestas:
-        # Generar preguntas y respuestas si la lista está vacía
-        for numero in range(10, 2):
-            for multiplicador in range(2, 10):
-                pregunta = f"{numero} x {multiplicador} = ?"
-                respuesta_correcta = numero * multiplicador
-                preguntas_respuestas.append((pregunta, respuesta_correcta))
+        # Generar preguntas y respuestas aleatorias
+        numeros = list(range(2, 10))
+        random.shuffle(numeros)
+        for _ in range(10):
+            numero1 = random.choice(numeros)
+            numero2 = random.choice(numeros)
+            pregunta = f"{numero1} x {numero2} = ?"
+            respuesta_correcta = numero1 * numero2
+            preguntas_respuestas.append((pregunta, respuesta_correcta))
 
     mensaje = None
 
