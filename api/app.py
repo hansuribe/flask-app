@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from sympy import symbols, diff, integrate, simplify, SympifyError
 
+import random
+
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
