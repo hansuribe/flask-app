@@ -48,7 +48,7 @@ def index():
 def tabla_multiplicar():
     if not preguntas_respuestas:
         # Generar preguntas y respuestas si la lista está vacía
-        for numero in range(2, 10):
+        for numero in range(10, 2):
             for multiplicador in range(2, 10):
                 pregunta = f"{numero} x {multiplicador} = ?"
                 respuesta_correcta = numero * multiplicador
