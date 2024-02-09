@@ -45,7 +45,7 @@ def index():
 # Nueva ruta para la tabla de multiplicar
 # Ruta para la tabla de multiplicar
 # Ruta para la tabla de multiplicar
-app.route('/tabla_multiplicar', methods=['GET', 'POST'])
+@app.route('/tabla_multiplicar', methods=['GET', 'POST'])
 def tabla_multiplicar():
     if not preguntas_respuestas:
         # Generar preguntas y respuestas aleatorias
