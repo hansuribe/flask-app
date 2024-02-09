@@ -2,34 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Derivadas e Integrales</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Calculadora de Derivadas e Integrales</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/tabla_multiplicar">Tabla de Multiplicar</a></li>
-        </ul>
-    </nav>
-
-    <form action="/" method="post">
-        <label for="funcion">Ingrese la función:</label>
-        <input type="text" id="funcion" name="funcion" required>
-        <button type="submit" name="operacion" value="derivada">Derivar</button>
-        <button type="submit" name="operacion" value="integral">Integrar</button>
-    </form>
-
-    {% if resultado %}
-        <div class="resultado">
-            <h2>Resultado:</h2>
-            <!-- <p>La función ingresada es: \( {{ funcion }} \)</p> -->
-            <p>El resultado es: {{ resultado }} </p>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-bold">Calculadora de Derivadas e Integrales</h1>
         </div>
-    {% endif %}
-
-    {% if error %}
-        <p class="error">Error: {{ error }}</p>
-    {% endif %}
+    </header>
+    <nav class="bg-gray-800 text-white py-2">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center">
+                <li class="mr-6"><a href="/" class="hover:text-gray-300">Inicio</a></li>
+                <li><a href="/tabla_multiplicar" class="hover:text-gray-300">Tabla de Multiplicar</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto px-4 mt-8">
+        <form action="/" method="post" class="mb-8">
+            <label for="funcion" class="block mb-2">Ingrese la función:</label>
+            <input type="text" id="funcion" name="funcion" required class="block w-full p-2 border border-gray-300 rounded-md">
+            <div class="mt-4">
+                <button type="submit" name="operacion" value="derivada" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-4 hover:bg-blue-600">Derivar</button>
+                <button type="submit" name="operacion" value="integral" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Integrar</button>
+            </div>
+        </form>
+        {% if resultado %}
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md mb-4">
+                <p class="font-semibold">Resultado:</p>
+                <p>La función ingresada es: \( {{ funcion }} \)</p>
+                <p>El resultado es: \( {{ resultado }} \)</p>
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-4">
+                <p class="font-semibold">Error:</p>
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
