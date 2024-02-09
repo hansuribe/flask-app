@@ -3,6 +3,8 @@ from sympy import symbols, diff, integrate, simplify, SympifyError
 
 import random
 
+preguntas_respuestas = []
+
 
 app = Flask(__name__)
 
@@ -40,33 +42,34 @@ def index():
     return render_template('index.html', resultado=resultado, error=error)
 
 # Nueva ruta para la tabla de multiplicar
+# Ruta para la tabla de multiplicar
 @app.route('/tabla_multiplicar', methods=['GET', 'POST'])
 def tabla_multiplicar():
     pregunta = None
     respuesta_correcta = None
-    respuesta_usuario = None
     mensaje = None
+
+    if not preguntas_respuestas:
+        # Generar preguntas y respuestas si la lista está vacía
+        for numero in range(2, 10):
+            for multiplicador in range(2, 10):
+                pregunta = f"{numero} x {multiplicador} = ?"
+                respuesta_correcta = numero * multiplicador
+                preguntas_respuestas.append((pregunta, respuesta_correcta))
 
     if request.method == 'POST':
         respuesta_usuario = int(request.form['respuesta'])
+        pregunta, respuesta_correcta = preguntas_respuestas.pop(0)
         if respuesta_usuario == respuesta_correcta:
             mensaje = "¡Respuesta correcta!"
         else:
             mensaje = "Respuesta incorrecta. Inténtalo de nuevo."
+            preguntas_respuestas.append((pregunta, respuesta_correcta))
 
     else:
-        # Generar aleatoriamente la pregunta de la tabla de multiplicar
-        numero = random.randint(2, 9)
-        multiplicador = random.randint(2, 9)
-        pregunta = f"{numero} x {multiplicador} = ?"
-        respuesta_correcta = numero * multiplicador
+        pregunta, respuesta_correcta = preguntas_respuestas[0]
 
     return render_template('tabla_multiplicar.html', pregunta=pregunta, mensaje=mensaje)
-
-
-
-
-
 
 
 if __name__ == '__main__':
